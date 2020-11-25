@@ -156,4 +156,18 @@ public class PruebaEva03 {
 
 		assertEquals((Integer) 1, actual.inscribirEnEvento("Carrera Bermejo", camila));
 	}
+	
+	@Test 
+	public void queNoSePuedaSobreescribirUnEvento() throws NoEstaPreparado, NoExisteElEventoSolicitado {
+		Deportista camila = new Nadador(1, "Camila", "Espalda");
+		Club actual = new Club("Sitas");
+
+		actual.crearEvento(TipoDeEvento.CARRERA_NATACION_EN_AGUAS_ABIERTAS, "Carrera Rio de la Plata");
+		actual.crearEvento(TipoDeEvento.TRIATLON_IRONMAN, "Carrera Rio de la Plata");
+		
+		// Si se hubiese modificado el valor de la key este assert deberia lanzar 
+		// una excepcion NoEstaPreparado.
+		
+		assertEquals((Integer) 1, actual.inscribirEnEvento("Carrera Rio de la Plata", camila));
+	}
 }
