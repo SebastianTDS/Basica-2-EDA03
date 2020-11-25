@@ -36,7 +36,8 @@ public class Club {
 	}
 
 
-	public Integer inscribirEnEvento(String evento, Deportista depor) throws NoEstaPreparado {
+	public Integer inscribirEnEvento(String evento, Deportista depor) throws NoEstaPreparado, NoExisteElEventoSolicitado {
+		if(this.competencias.get(evento) == null) throw new NoExisteElEventoSolicitado();
 		return this.competencias.get(evento).inscribirParticipante(depor);
 	}
 	
