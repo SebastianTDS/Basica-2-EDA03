@@ -97,4 +97,27 @@ public class PruebaEva03 {
 		assertEquals((Integer)1, actual.inscribirEnEvento("Maraton de New York", celeste));			
 	}
 	
+	/* Tests Adicionales */
+	
+	@Test 
+	public void  queUnTriatletaPuedaParticiparEnUnTriatlon () throws NoEstaPreparado{		
+		// En los triatlones sólo pueden inscribirse los que sean INadador & ICiclista
+		Deportista celeste = new Triatleta(4, "Celeste", "Olimpico", TipoDeBicicleta.TRIA);
+		Club actual = new Club("Sitas");
+		
+		actual.crearEvento(TipoDeEvento.TRIATLON_IRONMAN, "Triatlon Khona");
+		
+		assertEquals((Integer)1, actual.inscribirEnEvento("Triatlon Khona", celeste));		
+	}
+	
+	@Test 
+	public void  queUnNadadorPuedaParticiparEnUnaCarreraDeNatacion () throws NoEstaPreparado{		
+		// En los triatlones sólo pueden inscribirse los que sean INadador & ICiclista
+		Deportista camila = new Nadador(1, "Camila", "Espalda");
+		Club actual = new Club("Sitas");
+		
+		actual.crearEvento(TipoDeEvento.CARRERA_NATACION_EN_AGUAS_ABIERTAS, "Triatlon Khona");
+		
+		assertEquals((Integer)1, actual.inscribirEnEvento("Triatlon Khona", camila));		
+	}
 }
