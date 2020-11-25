@@ -68,8 +68,7 @@ public class PruebaEva03 {
 	// la inclui para que no tire error en los tests de base
 
 	@Test(expected = NoEstaPreparado.class)
-	public void queUnCorredorNoSePuedaInscribirEnUnaCarreraDeNatacion()
-			throws NoEstaPreparado, NoExisteElEventoSolicitado {
+	public void queUnCorredorNoSePuedaInscribirEnUnaCarreraDeNatacion() throws NoEstaPreparado, NoExisteElEventoSolicitado {
 		// En las carreras de natación sólo pueden inscribirse los que sean INadador
 		Deportista celeste = new Corredor(1000, "Celeste", 10000);
 		Club actual = new Club("Sitas");

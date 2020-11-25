@@ -63,8 +63,7 @@ public class Evento {
 	}
 
 
-	public Integer getNumeroDeInscripcion() {
+	public Integer getNumeroDeInscripcionSiguiente() {
 		return numeroDeInscripcion;
 	}
-
 }
