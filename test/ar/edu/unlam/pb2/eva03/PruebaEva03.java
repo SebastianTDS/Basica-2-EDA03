@@ -101,7 +101,6 @@ public class PruebaEva03 {
 	
 	@Test 
 	public void  queUnTriatletaPuedaParticiparEnUnTriatlon () throws NoEstaPreparado{		
-		// En los triatlones sólo pueden inscribirse los que sean INadador & ICiclista
 		Deportista celeste = new Triatleta(4, "Celeste", "Olimpico", TipoDeBicicleta.TRIA);
 		Club actual = new Club("Sitas");
 		
@@ -112,12 +111,36 @@ public class PruebaEva03 {
 	
 	@Test 
 	public void  queUnNadadorPuedaParticiparEnUnaCarreraDeNatacion () throws NoEstaPreparado{		
-		// En los triatlones sólo pueden inscribirse los que sean INadador & ICiclista
 		Deportista camila = new Nadador(1, "Camila", "Espalda");
 		Club actual = new Club("Sitas");
 		
-		actual.crearEvento(TipoDeEvento.CARRERA_NATACION_EN_AGUAS_ABIERTAS, "Triatlon Khona");
+		actual.crearEvento(TipoDeEvento.CARRERA_NATACION_EN_AGUAS_ABIERTAS, "Carrera Rio de la Plata");
 		
-		assertEquals((Integer)1, actual.inscribirEnEvento("Triatlon Khona", camila));		
+		assertEquals((Integer)1, actual.inscribirEnEvento("Carrera Rio de la Plata", camila));		
+	}
+	
+	@Test
+	public void queNoSeInscribanDosPersonasIgualesAlMismoEvento() throws NoEstaPreparado {
+		Deportista camila = new Nadador(1, "Camila", "Espalda");
+		Club actual = new Club("Sitas");
+		
+		actual.crearEvento(TipoDeEvento.CARRERA_NATACION_EN_AGUAS_ABIERTAS, "Carrera Rio de la Plata");
+		
+		assertEquals((Integer)1, actual.inscribirEnEvento("Carrera Rio de la Plata", camila));
+		assertNotEquals((Integer)2, actual.inscribirEnEvento("Carrera Rio de la Plata", camila));
+	}
+	
+	@Test
+	public void queUnTriatletaSePuedaAnotarEnTodosLosEventos() throws NoEstaPreparado {
+		Deportista andy = new Triatleta(4, "Andres", "Olimpico", TipoDeBicicleta.TRIA);
+		Club actual = new Club("Sitas");
+		
+		actual.crearEvento(TipoDeEvento.CARRERA_NATACION_EN_AGUAS_ABIERTAS, "Carrera Rio de la Plata");
+		actual.crearEvento(TipoDeEvento.CARRERA_42K, "Carrera 42Km");
+		actual.crearEvento(TipoDeEvento.TRIATLON_OLIMPICO, "Triatlon Olimpico");
+		
+		assertEquals((Integer)1, actual.inscribirEnEvento("Carrera Rio de la Plata", andy));
+		assertEquals((Integer)1, actual.inscribirEnEvento("Carrera 42Km", andy));
+		assertEquals((Integer)1, actual.inscribirEnEvento("Triatlon Olimpico", andy));
 	}
 }

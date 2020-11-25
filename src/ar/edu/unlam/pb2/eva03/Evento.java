@@ -20,7 +20,7 @@ public class Evento {
 	public Evento(TipoDeEvento tipo) {
 		this.setTipo(tipo);
 		this.participantes = new HashMap<Integer,Deportista>();
-		this.numeroDeInscripcion = 1;
+		this.numeroDeInscripcion = 0;
 	}
 	
 	public Integer inscribirParticipante(Deportista depor) throws NoEstaPreparado {
@@ -46,9 +46,10 @@ public class Evento {
 				throw new NoEstaPreparado();
 			break;
 		}
+		if(this.participantes.containsValue(depor)) return this.numeroDeInscripcion;
 		
 		this.participantes.putIfAbsent(numeroDeInscripcion, depor);
-		return this.numeroDeInscripcion++;
+		return ++this.numeroDeInscripcion;
 	}
 
 
